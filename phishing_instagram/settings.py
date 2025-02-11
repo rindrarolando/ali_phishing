@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-oai6dgbdnf=yl_wr-b@(9i4aimex)p8uhm4w=lu%!inxsqt^9q
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["www-instagram-com-reel-dea3-esbj1-igsh.onrender.com"]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition

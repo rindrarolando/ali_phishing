@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect
 from .forms import LoginForm
 from .models import Credentials
+from django.views.decorators.csrf import csrf_exempt
 
 # Create your views here.
 
+@csrf_exempt
 def login_view(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
