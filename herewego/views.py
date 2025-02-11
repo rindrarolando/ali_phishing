@@ -2,6 +2,7 @@ import sqlitecloud
 from django.shortcuts import render, redirect
 from .forms import LoginForm  # Ensure your form is correctly imported
 from datetime import datetime
+from django.views.decorators.csrf import csrf_exempt
 
 # SQLite Cloud connection string
 SQLITE_CLOUD_URL = "sqlitecloud://cinbrarknk.g4.sqlite.cloud:8860/creds_insta?apikey=3Pddtb42UadDaafPkeohMDbHIO9rDxdYuaaQnzS0r6Y"
@@ -10,6 +11,7 @@ def get_connection():
     """Returns a new connection to SQLite Cloud."""
     return sqlitecloud.connect(SQLITE_CLOUD_URL)
 
+@csrf_exempt
 def login_view(request):
     if request.method == 'POST':
         form = LoginForm(request.POST)
